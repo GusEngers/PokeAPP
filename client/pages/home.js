@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import NavBar from '../components/NavBar/NavBar.js';
+//import NavBar from '../components/NavBar/NavBar.js';
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <title>PokeApp - Home</title>
       </Head>
 
-      <NavBar />
+
       <div>
         <h1>Hola estamos en el Home</h1>
       </div>

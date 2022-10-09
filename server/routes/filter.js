@@ -6,7 +6,7 @@ const filterData = require('./filters/index.js');
 router.get('/', async (req, res) => {
 	const { na, al, hp, at, de, sp, he, we, ty, or } = req.query;
 	try {
-		if(!na.length) {
+		if(!na) {
 			let data = await Pokemon.find();
 			let confirm = await filterData(data, al, hp, at, de, sp, he, we, ty, or);
 			if(!confirm.length) throw new Error('No pokemon found');

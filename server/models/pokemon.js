@@ -38,7 +38,7 @@ const dataSchema = new mongoose.Schema({
   },
   api: {
   	type: Boolean,
-  	default: true
+  	default: false
   }	
 });
 

@@ -3,12 +3,9 @@ const router = Router();
 const Pokemon = require('../models/pokemon.js');
 
 router.get('/', async (req, res) => {
-	const { name } = req.query;
 	try {
-		if(!name) return res.json(await Pokemon.find());
-		let data = await Pokemon.find({name: new RegExp(name, 'i')});
-		if(!data.length) throw new Error('No pokemon found in this search :(');
-		return res.json(data);
+		let confirm = await Pokemon.find();
+		res.json(confirm);
 	} catch (error) {
 		res.status(404).json({Error: error.message});
 	}

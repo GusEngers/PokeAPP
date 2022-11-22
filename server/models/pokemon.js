@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -21,7 +25,7 @@ const dataSchema = new mongoose.Schema({
     type: Number,
     default: 45
   },
-  spedd: {
+  speed: {
     type: Number,
     default: 45
   },

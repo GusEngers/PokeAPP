@@ -3,9 +3,12 @@ import Link from 'next/link';
 import React from 'react';
 import axios from 'axios';
 import ListPokemons from '../components/ListPokemons/ListPokemons.js';
-//import NavBar from '../components/NavBar/NavBar.js';
+import NavBar from '../components/NavBar/NavBar.js';
+import { useRouter } from 'next/router'
 
 export default function Home() {
+  const router = useRouter();
+  const { region } = router.query;
   const [pokemons, setPokemons] = React.useState([]);
   const [error, setError] = React.useState('');
 
@@ -22,7 +25,7 @@ export default function Home() {
 
   if(!!error.length) return <h1>{error}</h1>
   if(!pokemons.length) return <h1>Loading...</h1>
-  return (
+  if(region === 'kanto') return (
     <div>
       <Head>
         <title>PokeApp - Home</title>
@@ -30,11 +33,12 @@ export default function Home() {
 
 
       <div>
-        <h1>Hola estamos en el Home</h1>
+        <NavBar />
         <ListPokemons
           list={pokemons}
         />
       </div>
     </div>
   )
+  return <h1>Region {region} no disponible</h1>
 }

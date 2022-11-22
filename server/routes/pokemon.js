@@ -25,6 +25,22 @@ router.post('/', async (req, res) => {
 	}
 });
 
+router.get('/origin', async (req, res) => {
+	const { status } = req.query;
+	try {
+		if(Number(status) === 1) {
+			let data = await Pokemon.find({api: true});
+			res.json(data);
+		};
+		if(Number(status) === 0) {
+			let data = await Pokemon.find({api: false});
+			res.json(data);
+		};
+	} catch (error) {
+		res.status(400).json({ Error: error.message});
+	};
+});
+
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
 	try {

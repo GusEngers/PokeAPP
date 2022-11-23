@@ -10,21 +10,33 @@ import {
   Box,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import style from './Landing.module.css';
 
-const regions = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Teselia', 'Kalos', 'Alola', 'Galar'];
+const regions_left = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh'];
+const regions_right = ['Teselia', 'Kalos', 'Alola', 'Galar'];
 
-const LinksRegions = ({region, index}) => (
+const LinksRegions = ({region}) => (
   <Link
-    href={index < 1 ? `/home?region=${region.toLowerCase()}` : '#'}
+    href={region === 'Kanto' ? `/home?region=${region.toLowerCase()}` : '#'}
     _hover={{
       textDecoration: 'none'
     }}
   >
     <Button
-      w={"50vh"}
-      disabled={index >= 1 ? true : false}
+      w={'125px'}
+      h={'125px'}
+      fontSize={'20px'}
+      className={style.land_but}
+      borderRadius={'100%'}
+      borderWidth={'3px'}
+      borderColor={'black'}
+      disabled={region !== 'Kanto' ? true : false}
     >
-      {region}
+      <p
+        className={style.tex_but}
+      >
+        {region.toUpperCase()}
+      </p>
     </Button>
   </Link>
 );
@@ -34,31 +46,26 @@ export default function Landing () {
     <Flex
       direction='row'
       h={'100vh'}
+      className={style.background}
     >
-      <Flex
-        w={'50%'}
-        justifyContent="center"
-        alignItems="center"
+      <Box
+        w={'50vw'}
+        className={style.box_left}
+        pl={'13vw'}
       >
-        <Text>Hola</Text>
-      </Flex>
-      <Flex
-        direction='column'
-        justifyContent="space-around"
-        alignItems="center"
-        w={'50%'}
-        border={"1px"}
+        {regions_left.map((region, index) => {
+          return <LinksRegions region={region} key={`${region}-${index}`} />
+        })}
+      </Box>
+      <Box
+        w={'50vw'}
+        className={style.box_right}
+        pr={'13vw'}
       >
-        <Text>Choose your region:</Text>
-        {regions.map((reg, ind) => (
-              <LinksRegions 
-                key={ind}
-                region={reg}
-                index={ind}
-              />
-            )
-          )}
-      </Flex>
+        {regions_right.map((region, index) => {
+          return <LinksRegions region={region} key={`${region}-${index}`} />
+        })}
+      </Box>
     </Flex>
   );
 };

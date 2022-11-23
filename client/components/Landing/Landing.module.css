@@ -1,0 +1,46 @@
+/* -- Background -- */
+.background {
+
+	background-image: url('https://www.wallpapertip.com/wmimgs/14-144299_wallpapers-pokemon-hd-taringa-all-pokemon.jpg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* -- Box izquierda -- */
+.box_left {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	background: rgb(27,21,134);
+	background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 27%, rgba(0,0,0,0.8) 35%, rgba(255,255,255,0.0) 100%);
+}
+
+/* -- Box derecha -- */
+.box_right {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: end;
+	background: rgb(130,134,21);
+	background: linear-gradient(90deg, rgba(255,255,255,0.0) 0%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,1) 73%, rgba(0,0,0,1) 100%);
+}
+
+/* -- Boton -- */
+.land_but {
+	background: rgb(199,22,22);
+	background: linear-gradient(180deg, rgba(199,22,22,1) 0%, rgba(222,11,11,1) 46%, rgba(0,0,0,1) 48%, rgba(7,6,0,1) 49%, rgba(232,232,225,1) 51%, rgba(252,252,252,1) 100%, rgba(236,226,15,1) 100%) !important;
+}
+
+.land_but:hover {
+	opacity: 80%;
+}
+
+/* -- Texto boton -- */
+.tex_but {
+	color: black;
+	border: 2px solid black;
+	border-radius: 20px;
+	background-color: white;
+	padding: 5px;
+}

@@ -18,6 +18,8 @@ const regions_right = ['Teselia', 'Kalos', 'Alola', 'Galar'];
 const LinksRegions = ({region}) => (
   <Link
     href={region === 'Kanto' ? `/home?region=${region.toLowerCase()}` : '#'}
+    h={'125px'}
+    w={'125px'}
     _hover={{
       textDecoration: 'none'
     }}

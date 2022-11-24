@@ -1,16 +1,16 @@
 import Head from 'next/head';
 import Link from 'next/link';
-//import NavBar from '../components/NavBar/NavBar.js';
+import Loading from '../components/Loading/Loading.js';
 
 export default function Create() {
   return (
     <div >
       <Head>
-        <title>PokeApp - Created your pokemon</title>
+        <title>hola</title>
       </Head>
 
       <div>
-        <h1>Hola estamos en el Create</h1>
+        <Loading />
       </div>
     </div>
   )

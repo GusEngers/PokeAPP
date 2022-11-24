@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 import axios from 'axios';
+import Loading from '../components/Loading/Loading.js';
 import ListPokemons from '../components/ListPokemons/ListPokemons.js';
 import NavBar from '../components/NavBar/NavBar.js';
 import { useRouter } from 'next/router'
@@ -24,7 +25,7 @@ export default function Home() {
   }, []);
 
   if(!!error.length) return <h1>{error}</h1>
-  if(!pokemons.length) return <h1>Loading...</h1>
+  if(!pokemons.length) return <Loading />
   if(region === 'kanto') return (
     <div>
       <Head>

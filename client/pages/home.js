@@ -5,7 +5,7 @@ import axios from 'axios';
 import Loading from '../components/Loading/Loading.js';
 import ListPokemons from '../components/ListPokemons/ListPokemons.js';
 import NavBar from '../components/NavBar/NavBar.js';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const router = useRouter();

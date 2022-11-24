@@ -16,8 +16,9 @@ export default function ListPokemons ({list}) {
 	return (
 		<>
 			<Wrap
+				bg={'gray'}
 				justify={'center'}
-				border={'1px'}
+				spacing={'20px'}
 			>
 				{list.map((pokemon, index) => {
 					return (

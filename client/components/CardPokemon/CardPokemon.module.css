@@ -5,6 +5,10 @@
 	background: linear-gradient(180deg, rgba(199,22,22,1) 0%, rgba(199,22,22,1) 48%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 51%, rgba(255,255,255,1) 52%, rgba(255,255,255,1) 100%) !important;
 }
 
+.link_pok {
+	border-radius: 100%;
+}
+
 .text {
 	border: 5px solid black;
 	border-radius: 20px;

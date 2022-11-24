@@ -1,5 +1,5 @@
 .loading {
-	background-color: #000;
+	background-color: grey;
 	background-image: url('data:image/svg+xml,\
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 40 40">\
 <style> /* ...YO DAWG... */ circle { animation: 4s a infinite linear, 3s o infinite linear; }\

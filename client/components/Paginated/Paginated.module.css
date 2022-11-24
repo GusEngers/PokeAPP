@@ -1,0 +1,6 @@
+.bg_flex {
+	background-color: rgb(199,22,22) !important;
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	min-height: 70px;
+}

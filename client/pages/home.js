@@ -6,12 +6,22 @@ import Loading from '../components/Loading/Loading.js';
 import ListPokemons from '../components/ListPokemons/ListPokemons.js';
 import NavBar from '../components/NavBar/NavBar.js';
 import { useRouter } from 'next/router';
+import Paginated from '../components/Paginated/Paginated.js';
 
 export default function Home() {
   const router = useRouter();
   const { region } = router.query;
   const [pokemons, setPokemons] = React.useState([]);
   const [error, setError] = React.useState('');
+  const [page, setPage] = React.useState(1);
+  const listPage = page * 12;
+  const firstPokemon = listPage - 12;
+  const current = pokemons.slice(firstPokemon, listPage);
+  const [order, setOrder] = React.useState('');
+  
+  const paginated = (numPage) => {
+    setPage(numPage);
+  };
 
   React.useEffect(() => {
     if(!pokemons.length) {
@@ -37,7 +47,13 @@ export default function Home() {
       <div>
         <NavBar />
         <ListPokemons
-          list={pokemons}
+          list={current}
+        />
+        <Paginated 
+          pokemons={pokemons}
+          page={page}
+          setPage={setPage}
+          paginated={paginated}
         />
       </div>
     </div>

@@ -1,18 +1,36 @@
 import CardPokemon from '../CardPokemon/CardPokemon.js';
+import {
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Stack,
+  Text,
+  Link,
+  Box,
+  useBreakpointValue,
+  Wrap
+} from '@chakra-ui/react';
 
 export default function ListPokemons ({list}) {
 	return (
-		<div>
-			{list.map((pokemon, index) => {
-				return (
-					<CardPokemon
-						name={pokemon.name}
-						image={pokemon.image}
-						hp={pokemon.hp}
-						key={index}
-					/>
-				);
-			})}
-		</div>
+		<>
+			<Wrap
+				justify={'center'}
+				border={'1px'}
+			>
+				{list.map((pokemon, index) => {
+					return (
+						<CardPokemon
+							id={pokemon.id}
+							name={pokemon.name}
+							image={pokemon.image}
+							types={pokemon.types}
+							key={index}
+						/>
+					);
+				})}
+			</Wrap>
+		</>
 	);
 };

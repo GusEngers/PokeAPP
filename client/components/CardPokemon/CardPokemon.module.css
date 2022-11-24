@@ -1,0 +1,23 @@
+.card {
+	border-radius: 100%;
+	border: 5px solid black;
+	background: rgb(199,22,22);
+	background: linear-gradient(180deg, rgba(199,22,22,1) 0%, rgba(199,22,22,1) 48%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 51%, rgba(255,255,255,1) 52%, rgba(255,255,255,1) 100%) !important;
+}
+
+.text {
+	border: 5px solid black;
+	border-radius: 20px;
+	margin-bottom: 5px;
+	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.text_type {
+	text-transform: capitalize;
+	margin: 2px;
+	background: rgba(0, 255, 255, 0.2);
+	border-radius: 20px;
+}

@@ -25,22 +25,6 @@ import {
 import { SearchIcon, ChevronDownIcon, CloseIcon } from '@chakra-ui/icons';
 import style from './NavBar.module.css';
 
-const Links = ['Home', 'Create'];
-
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={`/${children.toLowerCase()}`}>
-    {children}
-  </Link>
-);
-
 export default function NavBar({setError}) {
   const [value, setValue] = React.useState('');
   const [order, setOrder] = React.useState('');
@@ -95,7 +79,7 @@ export default function NavBar({setError}) {
             </MenuList>
           </Menu>
         </Flex>
-        <Flex h={16} w={'70vw'} border={'1px'} alignItems={'center'} justifyContent={'center'}>
+        <Flex h={16} w={'80%'} alignItems={'center'} justifyContent={'center'}>
           <HStack spacing={3} alignItems={'center'}>
             <form onSubmit={searchClick}>
               <Flex >
@@ -122,6 +106,12 @@ export default function NavBar({setError}) {
                 </InputGroup>
               </Flex>
             </form>
+          </HStack>
+        </Flex>
+      </Box>
+      <Box>
+        <Flex h={16} alignItems={'center'} justifyContent={'center'}>
+          <HStack spacing={3} alignItems={'center'}>
             <Select 
               placeholder={'Order'}
               bg={'withe'}
@@ -150,10 +140,11 @@ export default function NavBar({setError}) {
               onChange={handleOrder}
             >
               {typesOptions.map((type, index) => {
-                return <option value={type} key={index}>{type.name.toUpperCase()}</option>
+                return <option value={type.name} key={index}>{type.name.toUpperCase()}</option>
               })}
             </Select>
-            <Button><CloseIcon /></Button>
+            <Button>Filter</Button>
+            <Button>Clear Filter</Button>
           </HStack>
         </Flex>
       </Box>

@@ -45,7 +45,9 @@ export default function Home() {
 
 
       <div>
-        <NavBar />
+        <NavBar
+          setError={setError}
+        />
         <ListPokemons
           list={current}
         />

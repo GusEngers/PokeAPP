@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
   Box,
   Flex,
@@ -16,9 +17,12 @@ import {
   useColorModeValue,
   Stack,
   Input,
-  Select
+  Select,
+  InputGroup,
+  InputRightElement,
+  FormControl
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { SearchIcon, ChevronDownIcon, CloseIcon } from '@chakra-ui/icons';
 import style from './NavBar.module.css';
 
 const Links = ['Home', 'Create'];
@@ -37,13 +41,30 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function NavBar() {
+export default function NavBar({setError}) {
   const [value, setValue] = React.useState('');
   const [order, setOrder] = React.useState('');
+  const [typesOptions, setTypesOptions] = React.useState([]);
+
+  React.useEffect(() => {
+    if(!typesOptions.length) {
+      axios('http://localhost:3001/types')
+      .then(d => setTypesOptions(d.data))
+      .catch(e => setError(e.message))
+    };
+    return () => {
+      setTypesOptions([]);
+      setError('');
+    };
+  }, []);
 
   const handleChange = (event) => setValue(event.target.value);
   const handleOrder = (event) => setOrder(event.target.value);
-  console.log(order)
+  const searchClick = (event) => {
+    event.preventDefault();
+    window.location.assign(`/search?name=${value}`);
+  };
+
   return (
     <>
       <Box className={style.bg_navbar} px={4}>
@@ -59,7 +80,7 @@ export default function NavBar() {
                   opacity: '0.5'
                 }}
               >
-                ↓ REGIONS
+                REGIONS<ChevronDownIcon />
               </Button>
             </MenuButton>
             <MenuList>
@@ -76,16 +97,31 @@ export default function NavBar() {
         </Flex>
         <Flex h={16} w={'70vw'} border={'1px'} alignItems={'center'} justifyContent={'center'}>
           <HStack spacing={3} alignItems={'center'}>
-            <Box>
-              <Input 
-                value={value}
-                bg={'withe'}
-                onChange={handleChange}
-                border={'1px'}
-                borderColor={'black'}
-                placeholder={'Search pokemon...'}
-              />
-            </Box>
+            <form onSubmit={searchClick}>
+              <Flex >
+                <InputGroup>
+                  <Input
+                    type="text"
+                    placeholder="Search pokemon..."
+                    _placeholder={{ color: 'black'}}
+                    border={'1px'} 
+                    borderColor={'black'}
+                    bg={'rgba(255, 255, 255, 0.7)'}
+                    onChange={handleChange}
+                    mr={4}
+                    h={9}
+                    _focus={{backgroundColor:"rgba(195, 194, 195, 0.7)"}}
+                  />
+                  <InputRightElement
+                    children={<SearchIcon/>}
+                    color={"black"}
+                    pr={'25px'}
+                    cursor={"pointer"}
+                    onClick={searchClick}
+                  />
+                </InputGroup>
+              </Flex>
+            </form>
             <Select 
               placeholder={'Order'}
               bg={'withe'}
@@ -105,6 +141,19 @@ export default function NavBar() {
               <option value="SPDu">SPD+</option>
               <option value="SPDd">SPD-</option>
             </Select>
+            <Select 
+              placeholder={'Types'}
+              bg={'withe'}
+              w={'110px'}
+              border={'1px'} 
+              borderColor={'black'}
+              onChange={handleOrder}
+            >
+              {typesOptions.map((type, index) => {
+                return <option value={type} key={index}>{type.name.toUpperCase()}</option>
+              })}
+            </Select>
+            <Button><CloseIcon /></Button>
           </HStack>
         </Flex>
       </Box>

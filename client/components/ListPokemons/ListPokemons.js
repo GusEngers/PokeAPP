@@ -19,6 +19,7 @@ export default function ListPokemons ({list}) {
 				bg={'gray'}
 				justify={'center'}
 				spacing={'20px'}
+				minH={'765px'}
 			>
 				{list.map((pokemon, index) => {
 					return (

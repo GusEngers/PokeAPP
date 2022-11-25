@@ -53,7 +53,8 @@ export default function CardPokemon ({id, name, image, types}) {
 				className={style.link_pok}
 				href={`/pokemon/${id}`}
 				_hover={{
-					textDecoration: 'none'
+					textDecoration: 'none',
+					opacity: '0.8'
 				}}
 			>
 				<Box

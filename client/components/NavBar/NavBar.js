@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React from 'react';
 import {
   Box,
   Flex,
@@ -15,8 +15,11 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Input,
+  Select
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import style from './NavBar.module.css';
 
 const Links = ['Home', 'Create'];
 
@@ -35,76 +38,75 @@ const NavLink = ({ children }) => (
 );
 
 export default function NavBar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [value, setValue] = React.useState('');
+  const [order, setOrder] = React.useState('');
 
+  const handleChange = (event) => setValue(event.target.value);
+  const handleOrder = (event) => setOrder(event.target.value);
+  console.log(order)
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={'center'}>
-            <Box>
-              <Link
-                px={2}
-                py={1}
-                rounded={'md'}
+      <Box className={style.bg_navbar} px={4}>
+        <Flex alignItems={'center'}>
+          <Menu>
+            <MenuButton
+              cursor={'pointer'}
+              minW={0}
+            >
+              <Button
                 _hover={{
                   textDecoration: 'none',
-                  bg: useColorModeValue('gray.200', 'gray.700'),
+                  opacity: '0.5'
                 }}
-                href={'/'}>
-                PokeAPP
-              </Link>
-            </Box>
-            <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
-          </HStack>
-          <Flex alignItems={'center'}>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
+              >
+                ↓ REGIONS
+              </Button>
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Kanto</MenuItem>
+              <MenuItem>Johto</MenuItem>
+              <MenuItem>Hoenn</MenuItem>
+              <MenuItem>Sinnoh</MenuItem>
+              <MenuItem>Teselia</MenuItem>
+              <MenuItem>Kalos</MenuItem>
+              <MenuItem>Alola</MenuItem>
+              <MenuItem>Galar</MenuItem>
+            </MenuList>
+          </Menu>
         </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null}
+        <Flex h={16} w={'70vw'} border={'1px'} alignItems={'center'} justifyContent={'center'}>
+          <HStack spacing={3} alignItems={'center'}>
+            <Box>
+              <Input 
+                value={value}
+                bg={'withe'}
+                onChange={handleChange}
+                border={'1px'}
+                borderColor={'black'}
+                placeholder={'Search pokemon...'}
+              />
+            </Box>
+            <Select 
+              placeholder={'Order'}
+              bg={'withe'}
+              w={'110px'}
+              border={'1px'} 
+              borderColor={'black'}
+              onChange={handleOrder}
+            >
+              <option value="AZ">A-Z</option>
+              <option value="ZA">Z-A</option>
+              <option value="HPu">HP+</option>
+              <option value="HPd">HP-</option>
+              <option value="ATKu">ATK+</option>
+              <option value="ATKd">ATK-</option>
+              <option value="DEFu">DEF+</option>
+              <option value="DEFd">DEF-</option>
+              <option value="SPDu">SPD+</option>
+              <option value="SPDd">SPD-</option>
+            </Select>
+          </HStack>
+        </Flex>
       </Box>
     </>
   );

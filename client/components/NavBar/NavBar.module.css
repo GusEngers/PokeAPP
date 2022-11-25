@@ -1,0 +1,11 @@
+.bg_navbar {
+	background-color: rgb(199,22,22) !important;
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	display: flex;
+	flex-direction: row;
+}
+
+.search_bar {
+	padding-left: 50px;
+}
